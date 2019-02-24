@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+  game.api:
+    build:
+      context: ./game
+    expose:
+      - "50053"
+    ports:
+      - "50053:50053"
+    links:
+      - steamgame.api
+    depends_on:
+      - steamgame.api
+
+  steamgame.api:
+    build:
+      context: ./steamgame
+    expose:
+      - "50051"
+    ports:
+      - "50051:50051"

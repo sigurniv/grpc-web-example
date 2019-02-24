@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package steam_game;
+
+option go_package = "steamgamepb";
+
+message GameSearch {
+    string search = 1;
+}
+
+message SearchGameRequest {
+    GameSearch search = 1;
+}
+
+message Game {
+    string id = 1;
+    string title = 2;
+}
+
+message SearchGameResponse {
+    repeated Game games = 1;
+}
+
+message GameDetailsRequest {
+    Game game = 1;
+}
+
+message GameDetails {
+    string name = 1;
+    string id = 2;
+    string currency = 3;
+    double price = 4;
+}
+
+message GameDetailsResponse {
+    GameDetails details = 1;
+}
+
+service SteamGameService {
+    rpc SearchGame (SearchGameRequest) returns (SearchGameResponse);
+
+    rpc GameDetails (GameDetailsRequest) returns (GameDetailsResponse);
+}
